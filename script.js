@@ -1,44 +1,37 @@
-console.log("Hello, world!")
-getcomputerchoice = () => {
-    const choices = ["rock", "paper", "scissors"];
-    const randomIndex = Math.floor(Math.random() * choices.length);
-    return choices[randomIndex];
-}
-getplayerchoice = () => {
-    const choices = ["rock", "paper", "scissors"];
-    let playerChoice;
-    do {
-        playerChoice = prompt("Enter your choice (rock, paper, scissors):").toLowerCase();
-    } while (!choices.includes(playerChoice));
-    return playerChoice;
-}
-playround = (playerSelection, computerSelection) => {
-    if (playerSelection === computerSelection) {
-        return "It's a tie!";
-    } else if (
-        (playerSelection === "rock" && computerSelection === "scissors") ||
-        (playerSelection === "paper" && computerSelection === "rock") ||
-        (playerSelection === "scissors" && computerSelection === "paper")
-    ) {
-        return `You win! ${playerSelection} beats ${computerSelection}.`;
-    } else {
-        return `You lose! ${computerSelection} beats ${playerSelection}.`;
-    }
-}
-playgame = () => {
-    let playerScore = 0;
-    let computerScore = 0;
-    for (let i = 0; i < 5; i++) {
-        const playerSelection = getplayerchoice();
-        const computerSelection = getcomputerchoice();
-        const result = playround(playerSelection, computerSelection);
-        console.log(result);
-        if (result.startsWith("You win")) {
-            playerScore++;
-        } else if (result.startsWith("You lose")) {
-            computerScore++;
+console.log("Hello, world!");
+const choices = ["rock", "paper", "scissors"];
+let playerscore = 0;
+let computerscore = 0;
+
+function playgame() {
+    for (let i = 0; i < 5; ++i) {
+        let playerChoice = prompt("Enter rock, paper, or scissors:").toLowerCase();
+        let computerChoice = choices[Math.floor(Math.random() * choices.length)];
+        console.log(`Player choice: ${playerChoice}`);
+        console.log(`Computer choice: ${computerChoice}`);
+        if (playerChoice === computerChoice) {
+            console.log("It's a tie!");
+        } else if (
+            (playerChoice === "rock" && computerChoice === "scissors") ||
+            (playerChoice === "paper" && computerChoice === "rock") ||
+            (playerChoice === "scissors" && computerChoice === "paper")
+        ) {
+            console.log("You win!");
+            playerscore++;
+        } else {
+            console.log("You lose!");
+            computerscore++;
         }
     }
-    console.log(`Final Score - You: ${playerScore}, Computer: ${computerScore}`);
+    console.log(`Final Score - Player: ${playerscore}, Computer: ${computerscore}`);
 }
-playgame()
+
+playgame();
+
+
+    
+    
+
+
+
+// This is a simple rock-paper-scissors game
